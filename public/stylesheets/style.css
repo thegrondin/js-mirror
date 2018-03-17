@@ -1,0 +1,58 @@
+html{
+  background-color: black;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+}
+
+#sleepVerticalGraph {
+  position: absolute !important;
+  top : 50px !important;
+  right: 50px !important
+}
+
+#currentHeartBeat {
+  position: absolute !important;
+  top : 50px !important;
+  left: 50px !important;
+}
+
+#weather-module div * {
+
+  margin: 4px !important;
+  text-indent: 0%;
+
+}
+
+#weather-module > table {
+  margin-top: 20px;
+  width: 100%;
+}
+
+#midAlignment {
+  width: 50%;
+}
+
+#midAlignment > img {
+  float: left;
+  padding-left: 10px;
+  padding-right: 20px;
+}
+
+
+#weather-module {
+  position: absolute;
+  bottom:120px;
+  left: 30px;
+
+  padding: 10px;
+
+  border: 1px solid white;
+
+  width: 500px;
+}
+
+#weather-prevention {
+  overflow: hidden;
+  width: 100% !important;
+  margin: 0 !important;
+}
