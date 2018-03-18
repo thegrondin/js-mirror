@@ -20,10 +20,10 @@
 </head>
 <body class="body-2">
   <h1 class="welcome-message">Hello !</h1>
-  <h1 class="voice-command-ex">Dites: Afficher le bulletin météo!</h1>
-  <div class="div-block-9">
-    <h4 class="heading-10">Vendredi, 13 mars 2018</h4>
-    <h1 class="heading-16">22h31</h1>
+  <h1 class="voice-command-ex" id="rotation-command">Dites: Afficher le bulletin météo!</h1>
+  <div class="div-block-9 clock-container">
+    <h4 class="heading-10" id="date"></h4>
+    <h1 class="heading-16 " id="time"></h1>
   </div>
   <div class="div-block-11">
     <h1 class="heading-13">Agenda</h1>
@@ -99,7 +99,10 @@
     </ul>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript" intergrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-   <script src="/js/webflow.js" />
+  <script src="/js/index/analog-clock.js"></script>
+  <script src="/js/index/rotation-commands.js"></script>
+  <script src="/js/webflow.js"></script>
+    
   <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
 </body>
 </html>
