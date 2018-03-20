@@ -45,21 +45,26 @@
 
             feedTitleDOMElement.innerText = "Feed: Google News";
 
-            
+            var listItemPosition = 0;
 
-            for (let i = 0; i < 1; i++) {
+            for (let i = 0; i < feedList.length; i++) {
 
                 let feedItem = document.createElement('div');
                 let feedItemImage = document.createElement('img');
                 let feedItemTitle = document.createElement('div');
                 let feedItemSource = document.createElement('div');
 
+                feedItem.style.top = listItemPosition + "px";
+
+                listItemPosition += 115
+
                 feedItem.classList.add("list-item", "w-clearfix");
 
-                
+                feedItem.style.maxHeight = "100px"
+                feedItem.style.minHeight = "100px"
 
                 feedItemImage.classList.add("image-3", "newsfeed-image");
-                feedItemImage.style.width = "108px";
+                feedItemImage.style.width = "140px";
 
                 feedItemTitle.classList.add("text-block-4", "newsfeed-title");
 
@@ -74,66 +79,37 @@
                 feedItem.appendChild(feedItemSource);
 
                 feedListDOMElement.appendChild(feedItem);      
-                
-                
             }
 
-            feedContainerDOMElement.appendChild(feedListDOMElement);
+            feedContainerDOMElement.appendChild(feedListDOMElement);  
+        })
+        
 
-            var movement = 0;
+        var ulList = document.getElementById('feed-list');
+        
+        setInterval(function () {
 
-            var listItem = document.getElementsByClassName("list-item");
+            var listItem = document.getElementsByClassName('list-item')
 
-            var feedList = document.getElementById('feed-list');
+            for (var index = 0; index < listItem.length; index++){
 
+                if (listItem[index].getBoundingClientRect().bottom < ulList.getBoundingClientRect().top){
+                    
+                    var temp = listItem[index];
 
-            setInterval(function() {
+                    temp.style.top = ( listItem[listItem.length-1].offsetTop+ listItem[listItem.length-1].clientHeight+7) + "px"
 
-                var triggered = false;
-                
-                var step = 0;
-
-                for (let index = 0; index < listItem.length; index++) {
-                    const element = listItem[index];
-
-                    element.style.position = 'absolute';
-
-                    element.style.top = movement + step + "px";
-
-                    if (element.getBoundingClientRect().top < feedList.getBoundingClientRect().top){
-                        element.style.top = (feedList.getBoundingClientRect.top + 200) + "px";
-                        console.log(element)
-                    }
-
-                    /*if (listItem[0].getBoundingClientRect().top < feedList.getBoundingClientRect().top - 400){
-                        console.log(listItem[0])
-                        var temp = listItem[0];
-
-                        temp.style.top =  (500 + movement) + "px";
-
-                        
-
-                    }*/
-                    step += 115;
-
-
+                    ulList.removeChild(temp);
+                    ulList.appendChild(temp)
+                    
+                }
+                else {
+                    listItem[index].style.top = (listItem[index].offsetTop-(10 + 0.6)) + "px"
                 }
 
-                
+            }
 
-                
-
-                triggered = true ;
-
-
-               
-
-                movement -= 10;
-
-            }, 100);
-
-            
-        })
+        }, 50);
     })
 
 
