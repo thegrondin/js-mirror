@@ -22,8 +22,6 @@
         rotationCommandDOMElement.innerHTML = "Dites: " + commandArray[rotationIndex];
 
         rotationIndex++;
-
-        console.log(rotationIndex)
         
 
     }, 6000) 

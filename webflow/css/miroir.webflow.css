@@ -248,3 +248,7 @@
 .column-5 {
   border-right: 1px solid #dbdbdb;
 }
+
+#feed-list {
+  max-height: 100px;
+}
