@@ -1,6 +1,6 @@
      // Client ID and API key from the Developer Console
-     var CLIENT_ID = '<YOUR_CLIENT_ID>';
-     var API_KEY = '<YOUR_API_KEY>';
+     var CLIENT_ID = '682362773015-m3js3bd1si8st16ut5i603v0geds9t8s.apps.googleusercontent.com';
+     var API_KEY = 'AIzaSyDlsaSjo6sgdDQsmUB4kt5guj-FQAdLw9o';
 
      // Array of API discovery doc URLs for APIs used by the quickstart
      var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
@@ -75,11 +75,11 @@
       *
       * @param {string} message Text to be placed in pre element.
       */
-     function appendPre(message) {
-       var pre = document.getElementById('content');
+     /*function appendPre(message) {
+       var pre = document.getElementById('agenda-container');
        var textContent = document.createTextNode(message + '\n');
        pre.appendChild(textContent);
-     }
+     }*/
 
      /**
       * Print the summary and start datetime/date of the next ten events in
@@ -93,22 +93,123 @@
          'showDeleted': false,
          'singleEvents': true,
          'maxResults': 10,
+         'start': new Object(),
          'orderBy': 'startTime'
        }).then(function(response) {
          var events = response.result.items;
-         appendPre('Upcoming events:');
 
-         if (events.length > 0) {
-           for (i = 0; i < events.length; i++) {
-             var event = events[i];
-             var when = event.start.dateTime;
-             if (!when) {
-               when = event.start.date;
-             }
-             appendPre(event.summary + ' (' + when + ')')
-           }
-         } else {
-           appendPre('No upcoming events found.');
+         console.log(response.result.items)
+
+        if (events.length > 0) {
+
+            var agendaContainer = document.getElementById('agenda-container');
+
+            var daysName = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam']; 
+            
+            for (i = 0; i < events.length; i++) {
+            
+                var event = events[i];
+
+                var eventName = event.summary;
+                var eventDate = new Date(event.start.dateTime);
+
+
+                var agendaElement = document.createElement('div');
+                agendaElement.classList.add('agenda-element', 'w-clearfix');
+
+                var agendaDateContainerElement = document.createElement('div');
+                agendaDateContainerElement.className = 'agenda-date-container';
+
+                var agendaDateTitleElement = document.createElement('h1');
+                agendaDateTitleElement.className = 'agenda-date-number';
+                agendaDateTitleElement.innerHTML = eventDate.getDate();
+
+                var agendaDateNameElement = document.createElement('h3')
+                agendaDateNameElement.className = 'agenda-date-name';
+                agendaDateNameElement.innerHTML = daysName[eventDate.getDay()] + ".";
+
+                var agendaInformationWrapperElement = document.createElement('div');
+                agendaInformationWrapperElement.className = 'div-block-14'
+
+                var agendaInformationContainerElement = document.createElement('div');
+                agendaInformationContainerElement.className = 'agenda-information-container';
+
+                var agendaInformationTextTitleElement = document.createElement('h4');
+                agendaInformationTextTitleElement.className = 'agenda-text-title';
+                agendaInformationTextTitleElement.innerHTML = eventName;
+
+                var agendaInformationTextInformationElement = document.createElement('div');
+                agendaInformationTextInformationElement.className = 'agenda-element-information';
+                agendaInformationTextInformationElement.innerHTML = new Date(event.start.dateTime).getHours() + ':' + new Date(event.start.dateTime).getMinutes() +  ' - ' + new Date(event.end.dateTime).getHours() + ':' + new Date(event.end.dateTime).getMinutes() + ', '+  event.location;
+
+                agendaDateContainerElement.appendChild(agendaDateTitleElement);
+                agendaDateContainerElement.appendChild(agendaDateNameElement);
+
+                agendaInformationContainerElement.appendChild(agendaInformationTextTitleElement);
+                agendaInformationContainerElement.appendChild(agendaInformationTextInformationElement);
+
+                agendaInformationWrapperElement.appendChild(agendaInformationContainerElement);
+
+                agendaElement.appendChild(agendaDateContainerElement);
+                agendaElement.appendChild(agendaInformationWrapperElement);
+
+                agendaContainer.appendChild(agendaElement);
+
+                console.log("Event Name : " + eventName + ", Event Date : " + eventDate + "\n")
+
+
+            }
+        } else {
+           console.log("Aucun items trouvees")
          }
        });
      }
+
+     /*
+    <div class="agenda-element w-clearfix">
+        <div class="agenda-date-container">
+          <h1 class="agenda-date-number">16</h1>
+          <h3 class="agenda-date-name">ven.</h3>
+        </div>
+        <div class="div-block-14">
+          <div class="agenda-information-container">
+            <h4 class="agenda-text-title">Programmation orienté objet</h4>
+            <div class="agenda-element-information">14h30 - 15h20 au B1017</div>
+          </div>
+        </div>
+      </div>
+      <div class="agenda-element w-clearfix">
+        <div class="agenda-date-container">
+          <h1 class="agenda-date-number">17</h1>
+          <h3 class="agenda-date-name">sam.</h3>
+        </div>
+        <div class="div-block-15">
+          <div class="agenda-information-container agenda-information-container-special-event">
+            <h4 class="agenda-text-title">Fête de la Sain-Patrick</h4>
+          </div>
+        </div>
+      </div>
+      <div class="agenda-element w-clearfix">
+        <div class="agenda-date-container">
+          <h1 class="agenda-date-number">19</h1>
+          <h3 class="agenda-date-name">lun.</h3>
+        </div>
+        <div class="div-block-16">
+          <div class="agenda-information-container agenda-information-container-special-event">
+            <h4 class="agenda-text-title">Fête de la Sain-Patrick</h4>
+          </div>
+          <div class="agenda-information-container">
+            <h4 class="agenda-text-title">Programmation orienté objet</h4>
+            <div class="agenda-element-information">14h30 - 15h20 au B1017</div>
+          </div>
+          <div class="agenda-information-container">
+            <h4 class="agenda-text-title">Programmation orienté objet</h4>
+            <div class="agenda-element-information">14h30 - 15h20 au B1017</div>
+          </div>
+          <div class="agenda-information-container">
+            <h4 class="agenda-text-title">Programmation orienté objet</h4>
+            <div class="agenda-element-information">14h30 - 15h20 au B1017</div>
+          </div>
+        </div>
+      </div>
+     */
