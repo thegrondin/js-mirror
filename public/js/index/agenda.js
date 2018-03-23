@@ -1,6 +1,42 @@
-     // Client ID and API key from the Developer Console
-     var CLIENT_ID = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com';
-     var API_KEY = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+Array.prototype.groupByProperty = function(property) {
+
+  var array = this;
+
+  var regroupedArray = [];
+  
+  var inlineArray = [];
+
+  var regroupedIndex = 0;
+
+  for (var index = 0; index < array.length; index++) {
+    const element = array[index];
+    if (index > 0 && inlineArray != undefined){
+      if ( new Date(inlineArray[inlineArray.length - 1].start.dateTime).getDate() == new Date(element.start.dateTime).getDate() ){
+        inlineArray.push(element)
+        regroupedArray[regroupedIndex] = inlineArray;
+      }
+      else {
+        inlineArray = [];
+        inlineArray.push(element)
+        regroupedArray[regroupedIndex] = inlineArray;
+        regroupedIndex++;
+      }
+    }
+    else {   
+      inlineArray.push(element)
+      regroupedArray[regroupedIndex] = inlineArray;
+      regroupedIndex++;
+    }
+  }
+
+  return regroupedArray;
+
+}    
+    
+    // Client ID and API key from the Developer Console
+    var CLIENT_ID = '682362773015-m3js3bd1si8st16ut5i603v0geds9t8s.apps.googleusercontent.com';
+    var API_KEY = 'AIzaSyDlsaSjo6sgdDQsmUB4kt5guj-FQAdLw9o';
+
 
      // Array of API discovery doc URLs for APIs used by the quickstart
      var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
@@ -98,72 +134,45 @@
        }).then(function(response) {
          var events = response.result.items;
 
-         console.log(response.result.items)
+         //console.log(response.result.items)
 
         if (events.length > 0) {
 
             var agendaContainer = document.getElementById('agenda-container');
 
             var daysName = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam']; 
+
+            var groupedDates = events.groupByProperty()
             
-            for (i = 0; i < events.length; i++) {
+            console.log(groupedDates)
+
             
-                var event = events[i];
 
-                var eventName = event.summary;
-                var eventDate = new Date(event.start.dateTime);
+            groupedDates.forEach( function (element, index ){
 
+              var agendaMainElement = document.createElement('div');
+              agendaMainElement.classList('agenda-element', 'w-clearfix');
 
-                var agendaElement = document.createElement('div');
-                agendaElement.classList.add('agenda-element', 'w-clearfix');
+              var agendaDateContainerElement = document.createElement('div');
+              agendaDateContainerElement.className = 'agenda-date-container';
 
-                var agendaDateContainerElement = document.createElement('div');
-                agendaDateContainerElement.className = 'agenda-date-container';
+              var agendaDateTitleElement = document.createElement('h1');
+              agendaDateTitleElement.className = 'agenda-date-number';
+              agendaDateTitleElement.innerHTML = element[0].getDate();
 
-                var agendaDateTitleElement = document.createElement('h1');
-                agendaDateTitleElement.className = 'agenda-date-number';
-                agendaDateTitleElement.innerHTML = eventDate.getDate();
+              var agendaDateNameElement = document.createElement('h3');
+              agendaDateNameElement.className = 'agenda-date-name';
+              agendaDateNameElement.innerHTML = daysName[element[0].getDate()]
 
-                var agendaDateNameElement = document.createElement('h3')
-                agendaDateNameElement.className = 'agenda-date-name';
-                agendaDateNameElement.innerHTML = daysName[eventDate.getDay()] + ".";
-
-                var agendaInformationWrapperElement = document.createElement('div');
-                agendaInformationWrapperElement.className = 'div-block-14'
-
-                var agendaInformationContainerElement = document.createElement('div');
-                agendaInformationContainerElement.className = 'agenda-information-container';
-
-                var agendaInformationTextTitleElement = document.createElement('h4');
-                agendaInformationTextTitleElement.className = 'agenda-text-title';
-                agendaInformationTextTitleElement.innerHTML = eventName;
-
-                var agendaInformationTextInformationElement = document.createElement('div');
-                agendaInformationTextInformationElement.className = 'agenda-element-information';
-                agendaInformationTextInformationElement.innerHTML = new Date(event.start.dateTime).getHours() + ':' + new Date(event.start.dateTime).getMinutes() +  ' - ' + new Date(event.end.dateTime).getHours() + ':' + new Date(event.end.dateTime).getMinutes() + ', '+  event.location;
-
-                agendaDateContainerElement.appendChild(agendaDateTitleElement);
-                agendaDateContainerElement.appendChild(agendaDateNameElement);
-
-                agendaInformationContainerElement.appendChild(agendaInformationTextTitleElement);
-                agendaInformationContainerElement.appendChild(agendaInformationTextInformationElement);
-
-                agendaInformationWrapperElement.appendChild(agendaInformationContainerElement);
-
-                agendaElement.appendChild(agendaDateContainerElement);
-                agendaElement.appendChild(agendaInformationWrapperElement);
-
-                agendaContainer.appendChild(agendaElement);
-
-                console.log("Event Name : " + eventName + ", Event Date : " + eventDate + "\n")
+              var agendaInformationContainerElement = document.createElement('div');
+              agendaInformationContainerElement.className = 'div-block-16';
 
 
-            }
-        } else {
-           console.log("Aucun items trouvees")
-         }
-       });
-     }
+
+            })
+
+        }
+      });
 
      /*
     <div class="agenda-element w-clearfix">
@@ -213,3 +222,78 @@
         </div>
       </div>
      */
+
+                 /*for (i = 0; i < groupedDates.length; i++) {
+            
+                var event = groupedDates[i][0];
+
+                
+                var eventDate = new Date(event.start.dateTime);
+
+                //console.log(eventDate.getDate());
+
+                var agendaElement = document.createElement('div');
+                agendaElement.classList.add('agenda-element', 'w-clearfix');
+
+                var agendaDateContainerElement = document.createElement('div');
+                agendaDateContainerElement.className = 'agenda-date-container';
+
+                var agendaDateTitleElement = document.createElement('h1');
+                agendaDateTitleElement.className = 'agenda-date-number';
+                agendaDateTitleElement.innerHTML = eventDate.getDate();
+
+                var agendaDateNameElement = document.createElement('h3')
+                agendaDateNameElement.className = 'agenda-date-name';
+                agendaDateNameElement.innerHTML = daysName[eventDate.getDay()] + ".";
+
+                
+
+
+                groupedDates.forEach(function (elArray, index ){
+                  elArray.forEach( function (element, index){
+
+                    var eventName = element.summary;
+                    
+                    var agendaInformationWrapperElement = document.createElement('div');
+                    agendaInformationWrapperElement.className = 'div-block-16'
+
+
+                    var agendaInformationTextTitleElement = document.createElement('h4');
+                    agendaInformationTextTitleElement.className = 'agenda-text-title';
+                    agendaInformationTextTitleElement.innerHTML = eventName;
+
+                    var agendaInformationTextInformationElement = document.createElement('div');
+                    agendaInformationTextInformationElement.className = 'agenda-element-information';
+                    agendaInformationTextInformationElement.innerHTML = new Date(element.start.dateTime).getHours() + ':' + new Date(element.start.dateTime).getMinutes() +  ' - ' + new Date(element.end.dateTime).getHours() + ':' + new Date(element.end.dateTime).getMinutes() + ', '+  element.location;
+
+                    var agendaInformationContainerElement = document.createElement('div');
+                    agendaInformationContainerElement.className = 'agenda-information-container';
+
+                    agendaInformationContainerElement.appendChild(agendaInformationTextTitleElement);
+                    agendaInformationContainerElement.appendChild(agendaInformationTextInformationElement);
+
+                    agendaInformationWrapperElement.appendChild(agendaInformationContainerElement);
+
+                    agendaElement.appendChild(agendaInformationWrapperElement);
+                  })
+                })
+
+                agendaDateContainerElement.appendChild(agendaDateTitleElement);
+                agendaDateContainerElement.appendChild(agendaDateNameElement);
+
+                
+
+                
+
+                agendaElement.appendChild(agendaDateContainerElement);
+                
+
+                agendaContainer.appendChild(agendaElement);
+
+               
+
+            }
+        } else {
+           console.log("Aucun items trouvees")
+         }
+       });*/}
