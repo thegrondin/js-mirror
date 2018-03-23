@@ -300,7 +300,7 @@
 .div-block-11 {
   position: absolute;
   left: 72px;
-  bottom: 45px;
+  top: 300px;
   display: inline-block;
 }
 
@@ -333,7 +333,8 @@
 }
 
 .agenda-information-container {
-  position: static;
+  position: relative;
+  left : 50px;
   display: block;
   width: 500px;
   margin-bottom: 8px;
