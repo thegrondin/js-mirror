@@ -60,9 +60,7 @@
                 feedItemImage.style.width = "140px";
                 feedItemTitle.classList.add("text-block-4", "newsfeed-title");
                 feedItemSource.classList.add("text-block-5", "newfeed-source");
-                // Images on feed desactivated because i'm in a bus and my pc is connected
-                // to an access point from cellphone. I don't want to wasted data...
-                //feedItemImage.src = feedList[i].enclosure.url;
+                feedItemImage.src = feedList[i].enclosure.url;
                 feedItemTitle.innerText = feedList[i].title;
                 feedItemSource.innerText = feedList[i].creator;
                 feedItem.appendChild(feedItemImage);

@@ -1,24 +1,27 @@
-<div id="weather-module">
-        <div>
-            <h2>Chicoutimi, Saguenay, QC</h2>
-            <h4>Mercredi 18h00</h4>
-            <p>Nuageux</p>
-        </div>
-
-        <table>
-            <tr>
-                <td align="left" id="midAlignment" ><img src="images/cloud.png" width="80"></img> <h1>-1 C</h1></td>
-                <td align="left" >
-                    <div>
-                        <h4>Precipitation: 80%</h4>
-                        <h4>Humidite: 91%</h4>
-                        <h4>Vent: 10 km/h</h4>
-                    </div>
-                </td>
-            </tr>
-        </table>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="texpt/css" media="screen" href="main.css" />
+    <scrit src="main.js"></script>
+</head>
+<body>
+    <div id="weather-module">
+        <h1>Weather details module</h1>
         
-        <canvas id="weather-prevention" height=120></canvas>
-
-
     </div>
+
+    <script src="/js/weather/weatherFeedService.js"></script>
+
+    <script>
+        
+        var weatherService = new WeatherFeedService('test', 'test');
+
+        weatherService.forDay;
+
+    </script>
+</body>
+</html>
