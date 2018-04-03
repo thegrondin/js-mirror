@@ -8,9 +8,9 @@
   <meta content="day" property="og:title">
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <meta content="Webflow" name="generator">
-  <link href="css/normalize.css" rel="stylesheet" type="text/css">
-  <link href="css/webflow.css" rel="stylesheet" type="text/css">
-  <link href="css/miroir.webflow.css" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/webflow.css" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/miroir.webflow.css" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js" type="text/javascript"></script>
   <script type="text/javascript">WebFont.load({  google: {    families: ["Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic"]  }});</script>
   <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
@@ -31,14 +31,45 @@
   </div>
   <div class="div-block-23">
     <h1 class="heading-23">Statistiques activité physique</h1>
-    <div class="div-block-24"></div>
+    <div class="div-block-24">
+      <div class="section-2">
+        <div class="stat-cell-div-container w-clearfix"><img src="images/footsteps-silhouette-variant-1.svg" width="57" class="image-8">
+          <h1 class="heading-25"><span class="text-span-5">9304 </span>pas</h1>
+          <h3 class="heading-26">/9000</h3>
+        </div>
+      </div>
+      <div class="section-2">
+        <div class="stat-cell-div-container w-clearfix"><img src="images/placeholder.svg" width="57" class="image-8">
+          <h1 class="heading-25"><span class="text-span-6">1.4 </span>km</h1>
+          <h3 class="heading-26">/4</h3>
+        </div>
+      </div>
+      <div>
+        <div class="stat-cell-div-container w-clearfix"><img src="images/fire.svg" width="57" class="image-8">
+          <h1 class="heading-25"><span class="text-span-7">1243 </span>calories brulées</h1>
+          <h3 class="heading-26">/2300</h3>
+        </div>
+      </div>
+      <div>
+        <div class="stat-cell-div-container w-clearfix"><img src="images/glass.svg" width="57" class="image-8">
+          <h1 class="heading-25"><span class="text-span-8">12 </span>verres d&#x27;eau bu</h1>
+          <h3 class="heading-26">/15</h3>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="div-block-25">
     <h1 class="heading-24">Moyenne de pas</h1>
-    <div class="div-block-24"></div>
+    <div class="div-block-24">
+      <canvas id="stat-average-steps"></canvas>
+    </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript" intergrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="js/webflow.js" type="text/javascript"></script>
   <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+  <script src="/js/day/statAverageSteps.js"></script>
+  <script src="/js/day/statPhysicalActivity.js"></script>
 </body>
 </html>
