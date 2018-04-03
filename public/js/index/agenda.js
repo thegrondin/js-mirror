@@ -75,6 +75,9 @@ Array.prototype.groupByProperty = function(property) {
          updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
          authorizeButton.onclick = handleAuthClick;
          signoutButton.onclick = handleSignoutClick;
+
+         authorizeButton.style.display = "none"
+         signoutButton.style.display = "none"
        });
      }
 
@@ -142,25 +145,30 @@ Array.prototype.groupByProperty = function(property) {
 
             var agendaContainer = document.getElementById('agenda-container');
 
-            var daysName = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam']; 
+            var daysName = ['DIMANCHE', 'LUNDI', 'MARDI', 'MERCREDI', 'JEUDI', 'VENDREDI', 'SAMEDI']; 
 
             var groupedDates = events.groupByProperty()
             
+            var borderLeftColors = ["#63cdff", "#ff5656", "#56ff69"]
             
 
             groupedDates.forEach( function (element, index ){
 
-              console.log("One day")
+              //console.log("One day")
 
               var agendaMainElement = document.createElement('div');
               agendaMainElement.classList.add('agenda-element', 'w-clearfix');
 
+              
+
               var agendaDateContainerElement = document.createElement('div');
               agendaDateContainerElement.className = 'agenda-date-container';
 
+             
+
               var agendaDateTitleElement = document.createElement('h1');
               agendaDateTitleElement.className = 'agenda-date-number';
-              agendaDateTitleElement.innerHTML = new Date(element[0].start.dateTime).getDate();
+              //agendaDateTitleElement.innerHTML = new Date(element[0].start.dateTime).getDate();
 
               var agendaDateNameElement = document.createElement('h3');
               agendaDateNameElement.className = 'agenda-date-name';
@@ -169,14 +177,24 @@ Array.prototype.groupByProperty = function(property) {
               var agendaInformationContainerElement = document.createElement('div');
               agendaInformationContainerElement.className = 'div-block-16';
 
+              var colorIndexBorderLeft = 0
+
               agendaMainElement.appendChild(agendaDateContainerElement);
 
               element.forEach(function (inlineElement, index){
 
-                console.log(inlineElement.summary);
+                ///console.log(inlineElement.summary);
                 
                 var agendaInformationContainerElement = document.createElement('div');
                 agendaInformationContainerElement.className = "agenda-information-container";
+
+                agendaInformationContainerElement.style.borderLeft = "3px solid " + borderLeftColors[colorIndexBorderLeft]
+
+                if (colorIndexBorderLeft >= 2){
+                  colorIndexBorderLeft = 0;
+                }
+
+                colorIndexBorderLeft++;
 
                 var agendaInformationTitleElement = document.createElement('h4');
                 agendaInformationTitleElement.className = 'agenda-text-title';
