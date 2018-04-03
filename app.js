@@ -24,6 +24,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/meteo', meteo);
 app.use('/users', users);
+app.use('/day', day);
+app.use('/night', night);
 
 
 app.use(function(req, res, next) {
