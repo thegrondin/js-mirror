@@ -42,8 +42,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
     });
-    //ctx.defaults.global.defaultFontColor = "#fff";
-
 });
 
 

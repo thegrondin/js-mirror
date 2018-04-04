@@ -40,56 +40,58 @@
             var feedContainerDOMElement = document.getElementById("feed-container");
             var feedTitleDOMElement = document.getElementById("feed-title");
             var feedListDOMElement = document.getElementById("feed-list");
-            feedTitleDOMElement.innerText = "Feed: Google News";
-            var listItemPosition = 0;
+            feedTitleDOMElement.innerText = "La Presse";
+            
+            var jsonItemIndex = 0;
 
-            for (let i = 0; i < feedList.length; i++) {
 
-                let feedItem = document.createElement('div');
-                let feedItemImage = document.createElement('img');
-                let feedItemTitle = document.createElement('div');
-                let feedItemSource = document.createElement('div');
+            setInterval (function () {
 
-                feedItem.style.top = listItemPosition + "px";
-                listItemPosition += 115
+                var listItemPosition = 0;
 
-                feedItem.classList.add("list-item", "w-clearfix");
-                feedItem.style.maxHeight = "100px"
-                feedItem.style.minHeight = "100px"
-                feedItemImage.classList.add("image-3", "newsfeed-image");
-                feedItemImage.style.width = "140px";
-                feedItemTitle.classList.add("text-block-4", "newsfeed-title");
-                feedItemSource.classList.add("text-block-5", "newfeed-source");
-                feedItemImage.src = feedList[i].enclosure.url;
-                feedItemTitle.innerText = feedList[i].title;
-                feedItemSource.innerText = feedList[i].creator;
-                feedItem.appendChild(feedItemImage);
-                feedItem.appendChild(feedItemTitle);
-                feedItem.appendChild(feedItemSource);
-                feedListDOMElement.appendChild(feedItem);      
-            }
+                feedListDOMElement.velocity('transition.fadeOut', {duration: 2000})
 
+                feedListDOMElement.style.display = "block"
+
+                setTimeout( function () {
+                    feedListDOMElement.innerHTML = ''
+                
+                      for (let i = 0; i < 3; i++) {
+
+                          let feedItem = document.createElement('div');
+                          let feedItemImage = document.createElement('img');
+                          let feedItemTitle = document.createElement('div');
+                          let feedItemSource = document.createElement('div');
+          
+                          feedItem.style.top = listItemPosition + "px";
+                          listItemPosition += 180
+          
+                          feedItem.classList.add("list-item", "w-clearfix");
+                          feedItem.style.maxHeight = "150px"
+                          feedItem.style.minHeight = "150px"
+                          feedItemImage.classList.add("image-3", "newsfeed-image");
+                          feedItemImage.style.width = "400px";
+                          feedItemTitle.classList.add("text-block-4", "newsfeed-title");
+                          feedItemSource.classList.add("text-block-5", "newfeed-source");
+                          feedItemImage.src = feedList[jsonItemIndex].enclosure.url;
+                          feedItemTitle.innerText = feedList[jsonItemIndex].title;
+                          feedItemSource.innerText = feedList[jsonItemIndex].creator;
+                          feedItem.appendChild(feedItemImage);
+                          feedItem.appendChild(feedItemTitle);
+                          feedItem.appendChild(feedItemSource);
+                          feedListDOMElement.appendChild(feedItem);    
+                          
+                          jsonItemIndex++;
+          
+                          if (jsonItemIndex >= feedList.length){
+                              jsonItemIndex = 0;
+                          }
+                      }
+
+                      feedListDOMElement.velocity('transition.fadeIn', {duration: 2000})
+                }, 2000)                
+            }, 20000)
             feedContainerDOMElement.appendChild(feedListDOMElement);  
         })
-        
-        var ulList = document.getElementById('feed-list');
-        
-        setInterval(function () {
-
-            var listItem = document.getElementsByClassName('list-item')
-
-            for (var index = 0; index < listItem.length; index++){
-
-                if (listItem[index].getBoundingClientRect().bottom < ulList.getBoundingClientRect().top){
-                    var temp = listItem[index];
-                    temp.style.top = ( listItem[listItem.length-1].offsetTop + listItem[listItem.length-1].clientHeight+7) + "px"
-                    ulList.removeChild(temp);
-                    ulList.appendChild(temp)  
-                }
-                else {
-                    listItem[index].style.top = (listItem[index].offsetTop-(10 + 0.6)) + "px"
-                }
-            }
-        }, 50);
     })
 })();

@@ -154,21 +154,14 @@ Array.prototype.groupByProperty = function(property) {
 
             groupedDates.forEach( function (element, index ){
 
-              //console.log("One day")
-
               var agendaMainElement = document.createElement('div');
               agendaMainElement.classList.add('agenda-element', 'w-clearfix');
-
-              
 
               var agendaDateContainerElement = document.createElement('div');
               agendaDateContainerElement.className = 'agenda-date-container';
 
-             
-
               var agendaDateTitleElement = document.createElement('h1');
               agendaDateTitleElement.className = 'agenda-date-number';
-              //agendaDateTitleElement.innerHTML = new Date(element[0].start.dateTime).getDate();
 
               var agendaDateNameElement = document.createElement('h3');
               agendaDateNameElement.className = 'agenda-date-name';
@@ -183,8 +176,6 @@ Array.prototype.groupByProperty = function(property) {
 
               element.forEach(function (inlineElement, index){
 
-                ///console.log(inlineElement.summary);
-                
                 var agendaInformationContainerElement = document.createElement('div');
                 agendaInformationContainerElement.className = "agenda-information-container";
 
@@ -220,57 +211,5 @@ Array.prototype.groupByProperty = function(property) {
             })
         }
       });
-
-     /*  
-
-      HTML representation for the agenda
-
-    <div class="agenda-element w-clearfix">
-        <div class="agenda-date-container">
-          <h1 class="agenda-date-number">16</h1>
-          <h3 class="agenda-date-name">ven.</h3>
-        </div>
-        <div class="div-block-14">
-          <div class="agenda-information-container">
-            <h4 class="agenda-text-title">Programmation orienté objet</h4>
-            <div class="agenda-element-information">14h30 - 15h20 au B1017</div>
-          </div>
-        </div>
-      </div>
-      <div class="agenda-element w-clearfix">
-        <div class="agenda-date-container">
-          <h1 class="agenda-date-number">17</h1>
-          <h3 class="agenda-date-name">sam.</h3>
-        </div>
-        <div class="div-block-15">
-          <div class="agenda-information-container agenda-information-container-special-event">
-            <h4 class="agenda-text-title">Fête de la Sain-Patrick</h4>
-          </div>
-        </div>
-      </div>
-      <div class="agenda-element w-clearfix">
-        <div class="agenda-date-container">
-          <h1 class="agenda-date-number">19</h1>
-          <h3 class="agenda-date-name">lun.</h3>
-        </div>
-        <div class="div-block-16">
-          <div class="agenda-information-container agenda-information-container-special-event">
-            <h4 class="agenda-text-title">Fête de la Sain-Patrick</h4>
-          </div>
-          <div class="agenda-information-container">
-            <h4 class="agenda-text-title">Programmation orienté objet</h4>
-            <div class="agenda-element-information">14h30 - 15h20 au B1017</div>
-          </div>
-          <div class="agenda-information-container">
-            <h4 class="agenda-text-title">Programmation orienté objet</h4>
-            <div class="agenda-element-information">14h30 - 15h20 au B1017</div>
-          </div>
-          <div class="agenda-information-container">
-            <h4 class="agenda-text-title">Programmation orienté objet</h4>
-            <div class="agenda-element-information">14h30 - 15h20 au B1017</div>
-          </div>
-        </div>
-      </div>
-     */
 
       }
