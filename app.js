@@ -10,6 +10,7 @@ var users = require('./routes/users');
 var meteo = require('./routes/meteo');
 var day = require('./routes/day');
 var night = require('./routes/night');
+var home = require('./routes/home');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use('/meteo', meteo);
 app.use('/users', users);
 app.use('/day', day);
 app.use('/night', night);
+app.use('/home', home);
 
 
 app.use(function(req, res, next) {
