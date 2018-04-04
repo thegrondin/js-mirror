@@ -1545,3 +1545,19 @@
 .text-span-8 {
   color: #00b8ff;
 }
+
+#index-image {
+  position: absolute;
+  z-index: -2;
+  top: 0px;
+  left: 0px;
+}
+
+#index-image-overflow {
+  position: absolute;
+  z-index: -1;
+  top: 0px;
+  left: 0px;
+  background-color: #000;
+  opacity: 0.7;
+}

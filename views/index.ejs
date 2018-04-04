@@ -1,6 +1,10 @@
   <div id="index-page">
   <!--<video src="/images/earth-rotating-at-night-from-space-1080p.mp4" loop autoplay></video>-->
 
+  <img id="index-image" src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Blogimage.max-1000x1000.png"></img>
+  <div id="index-image-overflow"></div>
+
+
   <div id="command-names-example">
       <h1 class="welcome-message">Hello !</h1>
       <!--<h1 class="voice-command-ex" id="rotation-command">Dites: Afficher le bulletin météo!</h1>-->
@@ -47,5 +51,17 @@
   </script>
 
   <script src="/js/main.js"></script>
+
+  
+  <script>
+
+    var indexImage = document.getElementById('index-image');
+    indexImage.style.width = window.innerWidth+ "px";
+
+    var indexImageOverflow = document.getElementById('index-image-overflow');
+    indexImageOverflow.style.width = window.innerWidth+ "px";
+    indexImageOverflow.style.height = window.innerHeight+ "px";
+
+  </script>
 
   </div>
