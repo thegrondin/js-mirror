@@ -115,9 +115,8 @@
               activeElement.velocity('transition.fadeOut', {duration: 1000})
 
               setTimeout(function() {
-
+                
                 activeElement.style.display = 'none';
-
                 weatherPage.velocity('transition.fadeIn', {duration: 1000})
 
                 stylesheet.href = "/stylesheets/miroir.webflow-weather.css"
@@ -125,6 +124,9 @@
                 weatherPage.style.display = 'block';
                 
               }, 1000)
+
+              console.log(activeElement);
+
 
             }
             else if (event.results[i][0].transcript.trim()  == "affiche le compte-rendu de ma nuit") {
@@ -146,6 +148,7 @@
                 compteRenduNuitPage.style.display = 'block';
                 
               }, 1000)
+
             }
             else if (event.results[i][0].transcript.trim() == 'affiche le compte-rendu de ma journée') {
 
@@ -166,6 +169,7 @@
                 compteRenduJourPage.style.display = 'block';
                 
               }, 1000)
+
             }
             else if (event.results[i][0].transcript.trim()  == 'affiche l\'accueil') {
 
@@ -199,6 +203,9 @@
 
 
       recognition.start();
+      /*var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
+      var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;*/
+
       var phrases = [
         'Affiche le bulletin météo',
         'Affiche le compte-rendu de ma nuit',
