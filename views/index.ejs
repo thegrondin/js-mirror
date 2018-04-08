@@ -27,8 +27,8 @@
     </div>
   </div>
   <div class="div-block-10">
-    <h4 class="heading-17">Chicoutimi, QC Canada</h4><img src="images/cloud.svg" width="120">
-    <h1 class="heading-11">-3</h1>
+    <h4 class="heading-17">Québec, QC Canada</h4><img src="images/cloud.svg" width="120">
+    <h1 class="heading-11" id="index-weather-number">-3</h1>
     <h1 class="heading-12">°C</h1>
   </div>
   <div class="div-block-17" id="feed-container">
@@ -53,6 +53,28 @@
   <script src="/js/main.js"></script>
 
   
+  <script>
+           const req = new XMLHttpRequest();
+
+req.onreadystatechange = function(event) {
+    // XMLHttpRequest.DONE === 4
+    if (this.readyState === XMLHttpRequest.DONE) {
+        if (this.status === 200) {
+            var jsonResponse  = JSON.parse(this.responseText);
+
+            var indexWeatherElement = document.getElementById("index-weather-number");
+            indexWeatherElement.innerHTML = Math.round(jsonResponse.main.temp);
+
+        } else {
+            console.log("Status de la réponse: %d (%s)", this.status, this.statusText);
+        }
+    }
+};
+
+req.open('GET', 'https://api.openweathermap.org/data/2.5/weather?id=6325494&appid=ec11e6f570c12b5be620e77acf0f194c&units=metric&lang=fr', true);
+req.send(null);
+  </script>
+
   <script>
 
     var indexImage = document.getElementById('index-image');

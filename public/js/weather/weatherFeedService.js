@@ -42,7 +42,7 @@ class WeatherFeedService {
            }
        };
        
-       req.open('GET', 'https://api.openweathermap.org/data/2.5/weather?id=6137270&appid=ec11e6f570c12b5be620e77acf0f194c&units=metric&lang=fr', true);
+       req.open('GET', 'https://api.openweathermap.org/data/2.5/weather?id=6325494&appid=ec11e6f570c12b5be620e77acf0f194c&units=metric&lang=fr', true);
        req.send(null);
         
     }
