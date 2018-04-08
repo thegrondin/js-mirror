@@ -126,40 +126,6 @@
                 
               }, 1000)
 
-              console.log(activeElement);
-
-              //setTimeout(function (){
-
-               /* for (var pageIndex = 0; pageIndex < pagesList.length; pageIndex ++){
-                if (pagesList[pageIndex] != weatherPage){
-
-                  var style = window.getComputedStyle(pagesList[pageIndex]);
-
-                    if (style.display == 'block'){
-                      indexPage.velocity('transition.fadeOut', {duration: 1000})
-                    }
-
-                  setTimeout(function() {
-                    
-                      pagesList[pageIndex].style.display = 'none';
-
-                      stylesheet.href = "/stylesheets/miroir.webflow-weather.css"
-                      weatherPage.style.display = 'block';
-
-                  },1000)
-
-                }
-
-                  
-                }*/
-
-              //}, 1000)
-
-              
-
-              
-
-
             }
             else if (event.results[i][0].transcript.trim()  == "affiche le compte-rendu de ma nuit") {
 
@@ -180,17 +146,6 @@
                 compteRenduNuitPage.style.display = 'block';
                 
               }, 1000)
-
-
-
-             /* for (var pageIndex = 0; pageIndex < pagesList.length; pageIndex ++){*/
-                /*if (pagesList[pageIndex] != compteRenduNuitPage){
-                  pagesList[pageIndex].style.display = 'none';
-                }
-
-                stylesheet.href = "/stylesheets/miroir.webflow.css"
-                compteRenduNuitPage.style.display = 'block';*/
-              //}
             }
             else if (event.results[i][0].transcript.trim() == 'affiche le compte-rendu de ma journée') {
 
@@ -211,16 +166,6 @@
                 compteRenduJourPage.style.display = 'block';
                 
               }, 1000)
-
-
-              /*for (var pageIndex = 0; pageIndex < pagesList.length; pageIndex ++){
-                if (pagesList[pageIndex] != compteRenduJourPage){
-                  pagesList[pageIndex].style.display = 'none';
-                }
-
-                stylesheet.href = "/stylesheets/miroir.webflow.css"
-                compteRenduJourPage.style.display = 'block';
-              }*/
             }
             else if (event.results[i][0].transcript.trim()  == 'affiche l\'accueil') {
 
@@ -241,17 +186,6 @@
                 indexPage.style.display = 'block';
                 
               }, 1000)
-
-
-
-             /* for (var pageIndex = 0; pageIndex < pagesList.length; pageIndex ++){
-                if (pagesList[pageIndex] != indexPage){
-                  pagesList[pageIndex].style.display = 'none';
-                }
-
-                stylesheet.href = "/stylesheets/miroir.webflow.css"
-                indexPage.style.display = 'block';
-              }*/
             }
             else if (event.results[i][0].transcript.trim()  == 'Active le mode Debug'){
               alert("Mode Debug n'est pas encore implémenté dans le système")
@@ -265,9 +199,6 @@
 
 
       recognition.start();
-      /*var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
-      var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;*/
-
       var phrases = [
         'Affiche le bulletin météo',
         'Affiche le compte-rendu de ma nuit',
